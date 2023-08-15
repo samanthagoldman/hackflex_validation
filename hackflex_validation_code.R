@@ -173,29 +173,6 @@ bracken_barplot
 
 
 
-# Read the data
-bracken_gc <- read.table("/Users/samgoldman/Documents/hackflex_validation/bracken_edit_GC.csv", header = TRUE, sep = ",")
-
-# Create a scatter plot with a fitted line using ggplot2
-gc_line_bracken <- ggplot(bracken_gc, aes(x = GC, y = delta_abund_fromknown)) +
-  geom_point() +
-  geom_smooth(method = lm)
-
-# Print the plot
-print(gc_line_bracken)
-
-# Fit a linear regression model using lm
-linear_model <- lm(delta_abund_fromknown ~ GC, data = bracken_gc)
-
-# Get summary of the linear model to obtain statistics and p-values
-summary_linear_model <- summary(linear_model)
-
-# Print the summary to see all the coefficients, statistics, and p-values
-print(summary_linear_model)
-
-
-
-
 ## Figure 1C ##
 
 #MIQ score table created from running MIQ score program 
@@ -363,5 +340,28 @@ pcoa_mice <- deicode$data$Vectors %>%
 
 
 pcoa_mice
+
+
+### Supplementary Figure 2 ###
+
+#bracken_edit_GC.csv is the long form of the bracken output that has the GC values added as a column for each sample
+bracken_gc <- read.table(bracken_edit_GC.csv, header = TRUE, sep = ",")
+
+# Create scatter plot
+gc_line_bracken <- ggplot(bracken_gc, aes(x = GC, y = delta_abund_fromknown)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+
+print(gc_line_bracken)
+
+# Fit a linear regression model
+linear_model <- lm(delta_abund_fromknown ~ GC, data = bracken_gc)
+
+summary_linear_model <- summary(linear_model)
+
+
+print(summary_linear_model)
+
 
 ```
