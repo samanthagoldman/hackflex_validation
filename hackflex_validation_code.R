@@ -390,6 +390,12 @@ lm_model_size_bact <- lm(clr_abundance_diff ~ genome_size, data = avg_kraken_bac
 
 summary(lm_model_size_bact)
 
+#without L. fermentum
+
+no_lacto <- avg_kraken_bacteria[avg_kraken_bacteria$species!="Limosilactobacillus_fermentum",]
+lm_model_size_bact_nolacto <- lm(clr_abundance_diff ~ genome_size, data = no_lacto)
+summary(lm_model_size_bact_nolacto)
+
 #FDR correction of p values
 FDR_corrected <- p.adjust(c(0.311, 0.0733, 0.2932, 0.5366, 0.003617), method="bonferroni")
 
