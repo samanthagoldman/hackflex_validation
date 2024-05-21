@@ -403,6 +403,8 @@ FDR_corrected <- p.adjust(c(0.311, 0.0733, 0.2932, 0.5366, 0.003617), method="bo
 
 ##Supplementary Figure 3##
 
+#mouse_bias_taxa is a woltka taxonomy table of the 50 most abundant species across all samples. Woltka version 0.1.1 was used for TruSeq vs. Hackflex classification, and Woltka version 0.1.4 was used for Illumina DNA Prep vs Hackflex classification
+
 mouse_bias_taxa <- read.table("mouse_bias_taxa.txt", header = TRUE, sep = "\t")
 
 mouse_sample <- mouse_bias_taxa$clade_name
@@ -423,7 +425,6 @@ mouse_bias_taxa_clr_diff <- as.data.frame(mouse_bias_taxa_clr_diff)
 
 mouse_bias_taxa_clr_diff_long <- pivot_longer(mouse_bias_taxa_clr_diff, cols = -X, names_to = "species", values_to = "clr_abundance_diff")
 
-zymo_kraken_clr_long <- pivot_longer(clr_combined_zymo_kraken, cols = -sample, names_to = "species", values_to = "clr_abundance_diff")
 
 names(mouse_bias_taxa_clr_diff_long)[1] <- "sample"
 names(mouse_bias_taxa_clr_diff_long)[2] <- "clade_name"
